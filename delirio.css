@@ -46,9 +46,9 @@ a:hover{
 }
 
 
-/* =========================================================
+/* ============================================================
    BARRA SUPERIOR
-   ========================================================= */
+   ============================================================ */
 
 #top-banner{
   position:fixed;
@@ -57,14 +57,19 @@ a:hover{
   left:50%;
   width:1000px;
   height:92px;
+
   transform:
     translateX(-50%)
     scale(var(--page-scale,1));
+
   transform-origin:top center;
+
   background:#010101;
   color:#fff;
+
   display:grid;
   grid-template-columns:90px 1fr 180px 50px;
+
   align-items:center;
   padding:0 35px;
 }
@@ -74,10 +79,12 @@ a:hover{
   height:42px;
   border:0;
   background:transparent;
+
   display:flex;
   flex-direction:column;
   justify-content:center;
   gap:8px;
+
   cursor:pointer;
 }
 
@@ -107,10 +114,13 @@ a:hover{
 .lupa-banner{
   width:24px;
   height:24px;
+
   border:2px solid #fff;
   border-radius:50%;
+
   position:relative;
   justify-self:end;
+
   background:transparent;
   cursor:pointer;
 }
@@ -118,24 +128,30 @@ a:hover{
 .lupa-banner:after{
   content:"";
   position:absolute;
+
   width:10px;
   height:2px;
+
   background:#fff;
+
   right:-8px;
   bottom:-4px;
+
   transform:rotate(48deg);
 }
 
 
-/* =========================================================
+/* ============================================================
    MENÚ
-   ========================================================= */
+   ============================================================ */
 
 .menu-panel{
   position:fixed;
   z-index:1100;
   inset:0;
+
   background:rgba(1,1,1,.96);
+
   display:none;
   align-items:center;
   justify-content:center;
@@ -161,30 +177,44 @@ a:hover{
   position:absolute;
   top:25px;
   right:35px;
+
   background:transparent;
   color:#fff;
   border:0;
+
   font-size:35px;
   cursor:pointer;
 }
 
 
-/* =========================================================
+/* ============================================================
    PÁGINA
-   ========================================================= */
+   ============================================================ */
+
+/*
+  IMPORTANTE:
+
+  La página conserva SIEMPRE un ancho interno de 1000px.
+  En celular el JS solamente reduce su escala.
+  Esto mantiene la estructura de PC:
+  
+  CONTENIDO | MINI
+*/
 
 .page-wrap{
-  width:100%;
+  width:1000px;
   position:relative;
+  margin:0 auto;
 }
 
 .page{
   width:1000px;
-  margin:0 auto;
+  margin:0;
+
   background:var(--fondo);
   min-height:100vh;
-  transform:
-    scale(var(--page-scale,1));
+
+  transform:scale(var(--page-scale,1));
   transform-origin:top center;
 }
 
@@ -193,9 +223,9 @@ a:hover{
 }
 
 
-/* =========================================================
-   CABECERA
-   ========================================================= */
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
 
 .header{
   padding:35px 52px 0;
@@ -248,18 +278,24 @@ a:hover{
 
 .tools{
   position:relative;
+
   display:grid;
+
   grid-template-columns:1fr 34px;
   grid-template-rows:38px 28px 42px;
+
   column-gap:10px;
 }
 
 .search{
   height:38px;
+
   border:2px solid var(--linea);
   background:transparent;
   color:var(--texto);
+
   padding:5px 10px;
+
   font:14px Poppins,sans-serif;
   outline:none;
 }
@@ -267,30 +303,41 @@ a:hover{
 .search-button{
   width:34px;
   height:38px;
+
   border:0;
   background:transparent;
+
   position:relative;
   cursor:pointer;
 }
 
 .search-button:before{
   content:"";
+
   position:absolute;
+
   width:17px;
   height:17px;
+
   border:2px solid var(--texto);
   border-radius:50%;
+
   top:4px;
   left:4px;
 }
 
 .search-button:after{
   content:"";
+
   position:absolute;
+
   width:11px;
   height:2px;
+
   background:var(--texto);
+
   transform:rotate(45deg);
+
   left:19px;
   top:22px;
 }
@@ -302,9 +349,11 @@ a:hover{
 
 .theme{
   grid-column:1/span 2;
+
   display:flex;
   align-items:center;
   gap:10px;
+
   font:800 12px Poppins,sans-serif;
   text-transform:uppercase;
 }
@@ -313,14 +362,18 @@ a:hover{
   border:0;
   background:transparent;
   color:var(--texto);
+
   font-size:24px;
+
   cursor:pointer;
   padding:0;
 }
 
 .date{
   grid-column:1/span 2;
+
   text-align:right;
+
   font:14px/1.05 Benne,serif;
   letter-spacing:.4px;
 }
@@ -331,20 +384,25 @@ a:hover{
 }
 
 
-/* =========================================================
+/* ============================================================
    CONTENIDO PRINCIPAL
-   ========================================================= */
+   ============================================================ */
 
 .content{
   display:grid;
+
   grid-template-columns:minmax(0,1fr) 235px;
+
   column-gap:30px;
+
   padding:0 52px;
 }
 
 .note-columns{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:28px;
 }
 
@@ -355,13 +413,17 @@ a:hover{
 .note{
   padding:0 0 14px;
   margin:0 0 18px;
+
   border-bottom:1px solid var(--linea);
 }
 
 .note h2{
   font:900 21px/1.02 Playfair Display,serif;
+
   text-transform:uppercase;
+
   color:var(--rojo);
+
   margin:0 0 7px;
 }
 
@@ -376,53 +438,70 @@ a:hover{
 
 .star{
   color:var(--rojo);
+
   font-family:Georgia,serif;
+
   margin-right:5px;
 }
 
 .author{
   margin-top:12px;
+
   text-align:right;
+
   font:700 12px Poppins,sans-serif;
+
   font-variant:small-caps;
+
   letter-spacing:.25px;
 }
 
 
-/* =========================================================
-   MINI
-   ========================================================= */
+/* ============================================================
+   COLUMNA MINI
+   ============================================================ */
 
 .mini{
   display:flex;
   flex-direction:column;
+
   gap:15px;
+
   min-width:0;
 }
 
 .cover{
   width:100%;
   height:auto;
+
   display:block;
+
   object-fit:contain;
+
   background:var(--beige);
 }
 
 .mini-title{
   font:900 21px Playfair Display,serif;
+
   text-transform:uppercase;
+
   margin:0;
 }
 
 .mini-box{
   border-top:2px solid var(--linea);
+
   padding-top:11px;
 }
 
 .mini-box h3{
   font:900 20px Poppins,sans-serif;
+
   color:var(--rojo);
+
   margin:0 0 6px;
+
   text-transform:uppercase;
 }
 
@@ -433,44 +512,61 @@ a:hover{
 
 .mini-author{
   text-align:right;
+
   margin-top:8px;
+
   font:700 11px Poppins,sans-serif;
+
   font-variant:small-caps;
 }
 
 .instagram{
   background:var(--rojo);
+
   color:#fff;
+
   padding:15px;
+
   text-align:center;
+
   font-family:Poppins,sans-serif;
 }
 
 .instagram strong{
   display:block;
+
   font:italic 900 30px 'DM Serif Display',serif;
 }
 
 .instagram span{
   display:block;
+
   font-size:11px;
+
   font-weight:800;
 }
 
 .ad{
   height:90px;
+
   background:var(--beige);
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font:800 12px Poppins,sans-serif;
+
   text-transform:uppercase;
 }
 
 .birthday{
   background:var(--beige);
+
   padding:15px;
+
   text-align:center;
+
   font-family:Poppins,sans-serif;
 }
 
@@ -483,27 +579,36 @@ a:hover{
 .birthday .month{
   font-size:16px;
   font-weight:900;
+
   margin-top:5px;
 }
 
 .birthday .name{
   font-size:10px;
   font-weight:700;
+
   margin-top:10px;
 }
 
 .birthday small{
   display:block;
+
   font-size:8px;
+
   margin-top:4px;
 }
 
 .mini-access{
   display:flex;
+
   flex-direction:column;
+
   gap:5px;
+
   font:800 12px Poppins,sans-serif;
+
   text-transform:uppercase;
+
   margin-top:0;
 }
 
@@ -516,26 +621,32 @@ a:hover{
 }
 
 
-/* =========================================================
+/* ============================================================
    RECOMENDACIÓN
-   ========================================================= */
+   ============================================================ */
 
 .recommendation{
   border-top:2px solid var(--linea);
   border-bottom:2px solid var(--linea);
+
   margin-top:22px;
+
   padding:13px 0;
+
   text-align:center;
 }
 
 .recommendation .label{
   font:800 11px Poppins,sans-serif;
+
   text-transform:uppercase;
+
   color:var(--rojo);
 }
 
 .recommendation h3{
   font:900 22px Poppins,sans-serif;
+
   margin:2px 0;
 }
 
@@ -545,14 +656,16 @@ a:hover{
 
 .recommendation .rec-author{
   font:700 11px Poppins,sans-serif;
+
   font-variant:small-caps;
+
   margin-top:4px;
 }
 
 
-/* =========================================================
+/* ============================================================
    GALERÍA
-   ========================================================= */
+   ============================================================ */
 
 .gallery{
   margin-top:28px;
@@ -560,46 +673,64 @@ a:hover{
 
 .gallery h3{
   font:900 14px Poppins,sans-serif;
+
   text-transform:uppercase;
+
   color:var(--rojo);
+
   margin:0 0 12px;
 }
 
 .gallery-grid{
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:12px;
 }
 
 .gallery-grid img{
   width:100%;
   height:190px;
+
   object-fit:cover;
+
   cursor:zoom-in;
+
   display:block;
 }
 
 
-/* =========================================================
+/* ============================================================
    TARJETAS
-   ========================================================= */
+   ============================================================ */
 
 .cards{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:18px;
+
   margin-top:28px;
 }
 
 .card-red,
 .card-black{
   min-height:135px;
+
   padding:20px;
+
   display:flex;
+
   flex-direction:column;
+
   justify-content:center;
+
   align-items:center;
+
   text-align:center;
+
   font-family:Poppins,sans-serif;
 }
 
@@ -625,18 +756,22 @@ a:hover{
 
 .card-black small{
   margin-top:12px;
+
   font:14px Benne,serif;
 }
 
 
-/* =========================================================
+/* ============================================================
    NOTAS INFERIORES
-   ========================================================= */
+   ============================================================ */
 
 .bottom-notes{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:0 28px;
+
   margin-top:28px;
 }
 
@@ -645,32 +780,45 @@ a:hover{
 }
 
 
-/* =========================================================
+/* ============================================================
    FOOTER
-   ========================================================= */
+   ============================================================ */
 
 .footer{
   width:100%;
+
   background:var(--rojo);
+
   color:#fff;
+
   display:grid;
+
   grid-template-columns:150px 170px 1fr 330px;
+
   align-items:center;
+
   gap:30px;
+
   padding:30px 52px;
+
   margin-top:28px;
+
   min-height:145px;
 }
 
 .footer-instagram{
   font:42px Poppins,sans-serif;
+
   text-align:center;
 }
 
 .footer-links{
   display:flex;
+
   flex-direction:column;
+
   gap:7px;
+
   font:800 14px Poppins,sans-serif;
 }
 
@@ -680,26 +828,38 @@ a:hover{
 
 .footer-text{
   font-size:17px;
+
   line-height:1.15;
 }
 
 
-/* =========================================================
+/* ============================================================
    BUSCADOR
-   ========================================================= */
+   ============================================================ */
 
 .search-dropdown{
   position:absolute;
+
   z-index:1500;
+
   right:44px;
+
   top:auto;
+
   bottom:100%;
+
   margin-bottom:6px;
+
   width:330px;
+
   background:#fff;
+
   color:#111;
+
   border:1px solid #111;
+
   display:none;
+
   padding:7px;
 }
 
@@ -709,10 +869,15 @@ a:hover{
 
 .search-dropdown a{
   display:block;
+
   padding:8px 9px;
+
   border-bottom:1px solid #ddd;
+
   color:#111;
+
   text-decoration:none;
+
   font:13px Poppins,sans-serif;
 }
 
@@ -726,28 +891,38 @@ a:hover{
 
 .search-dropdown span{
   display:block;
+
   font-size:10px;
+
   margin-top:2px;
 }
 
 .search-no{
   padding:9px;
+
   font:800 11px Poppins,sans-serif;
 }
 
 
-/* =========================================================
-   GALERÍA MODAL
-   ========================================================= */
+/* ============================================================
+   MODAL GALERÍA
+   ============================================================ */
 
 .gallery-modal{
   position:fixed;
+
   z-index:2000;
+
   inset:0;
+
   background:rgba(0,0,0,.78);
+
   display:none;
+
   align-items:center;
+
   justify-content:center;
+
   padding:25px;
 }
 
@@ -757,152 +932,218 @@ a:hover{
 
 .gallery-modal-inner{
   position:relative;
+
   max-width:76vw;
   max-height:78vh;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
 }
 
 .gallery-modal img{
   display:block;
+
   max-width:72vw;
   max-height:66vh;
+
   width:auto;
   height:auto;
+
   object-fit:contain;
 }
 
 .gallery-modal .close{
   position:absolute;
+
   right:-35px;
   top:-35px;
+
   background:transparent;
+
   border:0;
+
   color:#fff;
+
   font:34px Arial,sans-serif;
+
   cursor:pointer;
 }
 
 .gallery-caption{
   color:#fff;
+
   text-align:center;
+
   margin-top:10px;
+
   font:14px Poppins,sans-serif;
+
   line-height:1.25;
 }
 
 .gallery-caption strong{
   display:block;
+
   font-size:15px;
 }
 
 .gallery-caption span{
   display:block;
+
   font-size:12px;
+
   margin-top:2px;
 }
 
 
-/* =========================================================
+/* ============================================================
    PÁGINAS DE BLOG
-   ========================================================= */
+   ============================================================ */
 
 .page-title{
   font:900 48px/1 Playfair Display,serif;
+
   text-align:center;
+
   margin:0 0 18px;
+
   text-transform:uppercase;
+
   color:var(--rojo);
 }
 
 .breadcrumb{
   border-top:2px solid var(--linea);
   border-bottom:2px solid var(--linea);
+
   padding:7px 0;
+
   margin-bottom:25px;
+
   font:800 13px Poppins,sans-serif;
+
   text-transform:uppercase;
 }
 
 .blog-list{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:0 45px;
 }
 
 .blog-link-card{
   border-bottom:1px solid var(--linea);
+
   padding:0 0 18px;
+
   margin-bottom:22px;
 }
 
 .blog-link-card h2{
   font:900 29px/1.02 Playfair Display,serif;
+
   color:var(--rojo);
+
   margin:0;
 }
 
 .blog-link-card .blog-author{
   margin-top:10px;
+
   text-align:right;
+
   font:700 13px Poppins,sans-serif;
+
   font-variant:small-caps;
 }
 
+
+/* ============================================================
+   ENTRADA DE BLOG
+   ============================================================ */
+
 .blog-entry-head{
   text-align:center;
+
   border-bottom:1px solid var(--linea);
+
   padding-bottom:12px;
 }
 
 .blog-entry-head .blog-name{
   font:900 20px Poppins,sans-serif;
+
   color:var(--rojo);
+
   text-transform:uppercase;
 }
 
 .blog-entry-head .blog-author{
   font:700 13px Poppins,sans-serif;
+
   font-variant:small-caps;
+
   margin-top:8px;
 }
 
 .blog-entry-title{
   font:italic 50px/1.02 'DM Serif Display',serif;
+
   text-align:center;
+
   margin:12px 0 20px;
 }
 
 .article-date{
   font:18px Benne,serif;
+
   margin-top:10px;
 }
 
 .font-tools{
   display:flex;
+
   align-items:center;
+
   gap:8px;
+
   border-top:1px solid var(--linea);
+
   padding-top:10px;
+
   font:800 13px Poppins,sans-serif;
+
   text-transform:uppercase;
 }
 
 .font-tools button{
   border:1px solid var(--linea);
+
   background:transparent;
+
   color:var(--texto);
+
   padding:4px 10px;
+
   font:800 15px Poppins,sans-serif;
+
   cursor:pointer;
 }
 
 .article-text{
   font-size:18px;
+
   line-height:1.18;
+
   text-align:justify;
+
   margin-top:10px;
 }
 
@@ -912,220 +1153,296 @@ a:hover{
 
 .article-bottom{
   border-top:2px solid var(--linea);
+
   margin-top:25px;
+
   padding-top:10px;
 }
 
 .published{
   font:800 12px Poppins,sans-serif;
+
   text-transform:uppercase;
 }
 
 .comment-title{
   font:800 14px Poppins,sans-serif;
+
   text-transform:uppercase;
+
   margin-top:20px;
 }
 
 .comment-form{
   display:flex;
+
   flex-direction:column;
+
   gap:9px;
 }
 
 .comment-form input,
 .comment-form textarea{
   width:100%;
+
   border:1px solid var(--linea);
+
   background:transparent;
+
   color:var(--texto);
+
   font:14px Poppins,sans-serif;
+
   padding:8px;
 }
 
 .comment-form textarea{
   height:110px;
+
   resize:none;
 }
 
 .comment-form button,
 .button{
   align-self:flex-start;
+
   background:#010101;
+
   color:#fff;
+
   border:0;
+
   padding:9px 25px;
+
   font:800 12px Poppins,sans-serif;
+
   cursor:pointer;
 }
 
 body.dark .comment-form button,
 body.dark .button{
   background:#fff;
+
   color:#010101;
 }
 
 .status{
   font:600 12px Poppins,sans-serif;
+
   margin-top:10px;
+
   min-height:18px;
 }
 
 
-/* =========================================================
+/* ============================================================
    SIDEBAR
-   ========================================================= */
+   ============================================================ */
 
 .sidebar{
   display:flex;
+
   flex-direction:column;
+
   gap:15px;
 }
 
 .sidebar-cover{
   width:100%;
   height:auto;
+
   object-fit:contain;
+
   background:var(--beige);
 }
 
 .sidebox{
   border-top:2px solid var(--linea);
+
   padding-top:10px;
 }
 
 .sidebox h3{
   font:900 20px Poppins,sans-serif;
+
   margin:0 0 5px;
+
   text-transform:uppercase;
+
   color:var(--rojo);
 }
 
 .sidebox p{
   font-size:16px;
+
   line-height:1.05;
+
   margin:0;
 }
 
 .sideauthor{
   text-align:right;
+
   font:700 10px Poppins,sans-serif;
+
   font-variant:small-caps;
+
   margin-top:7px;
 }
 
 .side-instagram{
   background:var(--rojo);
+
   color:#fff;
+
   padding:16px;
+
   text-align:center;
+
   font-family:Poppins,sans-serif;
 }
 
 .side-instagram strong{
   display:block;
+
   font:italic 28px 'DM Serif Display',serif;
 }
 
 .side-instagram span{
   font-size:11px;
+
   font-weight:800;
 }
 
 .birdie{
   border:1px solid var(--linea);
+
   padding:12px;
 }
 
 .birdie h3{
   font:italic 24px 'DM Serif Display',serif;
+
   margin:0 0 7px;
 }
 
 .birdie p{
   font-size:15px;
+
   line-height:1.08;
+
   margin:0;
 }
 
 
-/* =========================================================
-   AUTENTICACIÓN / REVISIÓN
-   ========================================================= */
+/* ============================================================
+   AUTORES / REVISIÓN
+   ============================================================ */
 
 .auth-box{
   max-width:500px;
+
   margin:0 auto;
 }
 
 .auth-box h2{
   font:900 35px Poppins,sans-serif;
+
   color:var(--rojo);
+
   text-transform:uppercase;
+
   margin:0 0 8px;
 }
 
 .auth-box p{
   font-size:17px;
+
   line-height:1.2;
+
   margin:0 0 20px;
 }
 
 .auth-field{
   display:flex;
+
   flex-direction:column;
+
   gap:7px;
+
   margin-bottom:15px;
 }
 
 .auth-field label{
   font:800 11px Poppins,sans-serif;
+
   text-transform:uppercase;
+
   color:var(--rojo);
 }
 
 .auth-field input{
   width:100%;
+
   border:1px solid var(--linea);
+
   background:transparent;
+
   color:var(--texto);
+
   padding:10px;
+
   font:14px Poppins,sans-serif;
 }
 
 .review-table{
   width:100%;
+
   border-collapse:collapse;
+
   font-family:Poppins,sans-serif;
 }
 
 .review-table th,
 .review-table td{
   border-bottom:1px solid var(--linea);
+
   padding:10px 7px;
+
   text-align:left;
+
   font-size:11px;
 }
 
 .review-table th{
   color:var(--rojo);
+
   font-weight:900;
+
   text-transform:uppercase;
 }
 
 .review-table button{
   background:var(--rojo);
+
   color:#fff;
+
   border:0;
+
   padding:6px 10px;
+
   font:800 10px Poppins,sans-serif;
+
   cursor:pointer;
 }
 
 .review-editor{
   display:none;
+
   margin-top:25px;
+
   border-top:2px solid var(--linea);
+
   padding-top:20px;
 }
 
@@ -1135,28 +1452,38 @@ body.dark .button{
 
 .review-editor h2{
   font:900 30px Poppins,sans-serif;
+
   color:var(--rojo);
+
   text-transform:uppercase;
 }
 
 .review-editor textarea{
   width:100%;
+
   min-height:320px;
+
   border:1px solid var(--linea);
+
   background:transparent;
+
   color:var(--texto);
+
   padding:10px;
+
   font:16px/1.2 Benne,serif;
 }
 
 
-/* =========================================================
+/* ============================================================
    ENLACES DE MINI
-   ========================================================= */
+   ============================================================ */
 
 .mini-link{
   display:block;
+
   color:inherit;
+
   text-decoration:none;
 }
 
@@ -1167,7 +1494,9 @@ body.dark .button{
 .instagram,
 .side-instagram{
   display:block;
+
   color:#fff;
+
   text-decoration:none;
 }
 
@@ -1177,9 +1506,9 @@ body.dark .button{
 }
 
 
-/* =========================================================
+/* ============================================================
    PÁGINAS DE SECCIÓN
-   ========================================================= */
+   ============================================================ */
 
 .section-main{
   min-width:0;
@@ -1187,36 +1516,51 @@ body.dark .button{
 
 .section-intro{
   border-bottom:2px solid var(--linea);
+
   padding-bottom:14px;
+
   margin-bottom:18px;
 }
 
 .section-intro h1{
   font:900 42px/1 Playfair Display,serif;
+
   text-transform:uppercase;
+
   color:var(--rojo);
+
   margin:0;
+
   text-align:left;
 }
 
 .section-intro p{
   font:800 12px Poppins,sans-serif;
+
   text-transform:uppercase;
+
   margin:6px 0 0;
+
   color:var(--texto);
 }
 
 .section-list{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:0 30px;
 }
 
 .section-entry{
   display:block;
+
   border-bottom:1px solid var(--linea);
+
   padding:0 0 18px;
+
   margin-bottom:22px;
+
   color:inherit;
 }
 
@@ -1226,26 +1570,35 @@ body.dark .button{
 
 .section-entry-type{
   font:800 11px Poppins,sans-serif;
+
   text-transform:uppercase;
+
   color:var(--rojo);
+
   margin-bottom:5px;
 }
 
 .section-entry h2{
   font:400 28px/1.05 Benne,serif;
+
   margin:0;
 }
 
 .section-entry-author{
   text-align:right;
+
   margin-top:10px;
+
   font:700 12px Poppins,sans-serif;
+
   font-variant:small-caps;
 }
 
 .reader{
   width:100%;
+
   background:#000;
+
   padding:0;
 }
 
@@ -1254,110 +1607,65 @@ body.dark .button{
 }
 
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* ============================================================
+   CORRECCIÓN DEFINITIVA DE VISTA MÓVIL
+   ============================================================ */
 
 /*
-   La página conserva su diseño original de 1000px.
-   JavaScript calcula --page-scale según el ancho disponible.
+  NO convertimos el sitio en una versión móvil de una columna.
 
-   Estas reglas evitan que elementos internos produzcan
-   desplazamientos horizontales innecesarios.
+  La página continúa teniendo 1000px de ancho.
+  El JS calcula --page-scale.
+
+  Ejemplo:
+
+  PC:
+  1000px × 1 = 1000px
+
+  Celular de 500px:
+  1000px × 0.5 = 500px
+
+  Así se conserva:
+
+  CONTENIDO | MINI
+
+  exactamente como en PC.
 */
-
-html,
-body{
-  max-width:100%;
-}
-
-#pageWrap{
-  overflow:visible;
-}
-
-.page{
-  overflow:visible;
-}
-
-.content > div,
-.content > aside{
-  min-width:0;
-}
-
-img{
-  max-width:100%;
-}
-
-
-/* =========================================================
-   MÓVIL
-   ========================================================= */
 
 @media(max-width:1000px){
 
   html,
   body{
+    min-width:0;
+
     width:100%;
+
     overflow-x:hidden;
   }
 
-  #top-banner{
-    left:50%;
-  }
-
   .page-wrap{
-    width:100%;
-    overflow:visible;
-  }
+    width:1000px;
 
-  .page{
-    margin-left:auto;
-    margin-right:auto;
-  }
+    margin-left:50%;
 
-  .content{
-    min-width:0;
-  }
+    margin-right:0;
 
-  .note,
-  .mini-box,
-  .recommendation,
-  .section-entry,
-  .blog-link-card{
-    min-width:0;
-  }
+    transform:translateX(-50%);
 
-  .mini-box p,
-  .note .title,
-  .section-entry h2,
-  .blog-link-card h2{
-    overflow-wrap:break-word;
-    word-break:normal;
-  }
-
-  .footer{
-    min-width:0;
-  }
-
-  .footer-text{
-    min-width:0;
-  }
-
-  .search-dropdown{
-    max-width:330px;
+    transform-origin:top center;
   }
 
 }
 
 
-/* =========================================================
-   MÓVILES MUY PEQUEÑOS
-   ========================================================= */
+/* ============================================================
+   SECCIÓN LIST
+   ============================================================ */
 
-@media(max-width:420px){
+@media(max-width:1000px){
 
-  .search-dropdown{
-    max-width:300px;
+  .section-list{
+    grid-template-columns:1fr 1fr;
   }
 
 }
