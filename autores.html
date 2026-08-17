@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Autores — Delirio</title>
+<link rel="stylesheet" href="delirio.css">
+</head>
+<body>
+<header id="top-banner">
+  <button class="banner-menu" id="menuButton" aria-label="Menú"><span></span><span></span><span></span></button>
+  <a href="inicio.html"><img class="banner-logo" src="imagenes/LOGOSINFONDO.png" alt="Delirio"></a>
+  <a class="edicion" href="revista.html">EDICIÓN<br>ACTUAL</a>
+  <button class="lupa-banner" id="bannerSearch" aria-label="Buscar"></button>
+</header>
+
+<div class="menu-panel" id="menuPanel">
+  <button class="menu-close" id="menuClose">×</button>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a class="" href="blog.html">Blog</a>
+    <a href="revista.html">Revista</a>
+    <a href="poesia.html">Poesía</a>
+    <a href="cine.html">Cine</a>
+    <a href="narrativa.html">Narrativa</a>
+  </nav>
+</div>
+
+<div class="page-wrap" id="pageWrap">
+<main class="page" id="page">
+<div class="banner-space"></div>
+
+<section class="header">
+  <div class="section-heading">AUTORES</div>
+  <div class="header-line"></div>
+  <div class="header-grid">
+    <nav class="nav"><a class="" href="inicio.html">Inicio</a><a class="" href="revista.html">Revista</a><a class="" href="poesia.html">Poesía</a><a class="" href="blog.html">Blog</a><a class="" href="cine.html">Cine</a><a class="" href="narrativa.html">Narrativa</a></nav>
+    <div class="tools">
+      <input class="search" id="searchInput" type="search">
+      <button class="search-button" id="searchButton" aria-label="Buscar"></button>
+      <div class="search-label">Buscar</div>
+      <div class="search-dropdown" id="searchDropdown"></div>
+      <div class="theme"><span>Tema</span><button id="themeButton" aria-label="Cambiar tema">☼</button></div>
+      <div class="date" id="fechaTexto"></div>
+    </div>
+  </div>
+  <div class="main-line"></div>
+</section>
+
+<section class="content">
+  
+<div class="auth-box">
+  <h2>AUTORES</h2>
+  <p>Ingresa con la clave que te fue proporcionada para acceder a tu espacio.</p>
+  <form class="author-login" id="authorLogin">
+    <div class="auth-field"><label>Contraseña</label><input id="authorPassword" type="password" autocomplete="off" required></div>
+    <button class="button" type="submit">INGRESAR</button>
+    <div class="status" id="loginStatus"></div>
+  </form>
+
+  <form class="author-submission" id="authorSubmission" style="display:none;">
+    <div class="auth-field"><label>AUTOR</label><input id="authorName" name="autor"></div>
+    <div class="auth-field"><label>SECCIÓN</label><input id="authorSection" name="seccion">
+      <select id="authorSectionSelect" name="seccion_select" style="display:none;">
+        <option value="NARRATIVA">NARRATIVA</option>
+        <option value="CINE">CINE</option>
+      </select>
+    </div>
+    <div class="auth-field" id="blogField"><label>BLOG</label><input id="authorBlog" name="blog"></div>
+    <div class="auth-field" id="typeField" style="display:none;"><label>TIPO: RESEÑA/CUENTO/OPINIÓN</label><select id="authorType" name="tipo"><option>RESEÑA</option><option>CUENTO</option><option>OPINIÓN</option></select></div>
+    <div class="auth-field"><label>TÍTULO</label><input name="titulo" required></div>
+    <div class="auth-field"><label>FECHA</label><input name="fecha" placeholder="Ej. Agosto 20, 2026" required></div>
+    <div class="auth-field"><label>CONTENIDO</label><textarea name="contenido" rows="12" required></textarea></div>
+    <button class="button" type="submit">ENVIAR ESCRITO</button>
+    <div class="status" id="submissionStatus"></div>
+  </form>
+</div>
+<script>
+(() => {
+  const configs = {
+    DH:{autor:'David Paredes Hernández',seccion:'BLOG',blog:'AVIARIO'},
+    RT:{autor:'Renata Tetlamatzi',seccion:'BLOG',blog:'BITÁCORA DE CROMO'},
+    EC:{autor:'Elizabeth Campos',seccion:'BLOG',blog:'LATIDOS NOCIVOS'},
+    UB:{autor:'Ulises Burgo',seccion:'BLOG',blog:'MIENTRAS TRATO DE VIVIR'},
+    MV:{autor:'Meredith Villalba',seccion:'BLOG',blog:'ORPHÉA'},
+    AR:{autor:'Amairany Rincón',seccion:'BLOG',blog:'RED'},
+    SR:{autor:'Santiago Riojas',seccion:'BLOG',blog:'ESTANTE'},
+    NR:{autor:'Natalia Regnier',seccion:'POESÍA',blog:''},
+    POE:{autor:'',seccion:'POESÍA',blog:''},
+    INVIT:{autor:'',seccion:'BLOG',blog:'ESTANTE'},
+    CUE:{autor:'',seccion:'NARRATIVA',blog:''},
+    RES:{autor:'',seccion:'',blog:''}
+  };
+  const form=document.getElementById('authorLogin'), panel=document.getElementById('authorSubmission'), status=document.getElementById('loginStatus');
+  const pass=document.getElementById('authorPassword');
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const value=pass.value.trim();
+    const prefix=(value.split('.')[0]||'').toUpperCase();
+    const validPasswords=['DH.DELIRIO.AUT','RT.DELIRIO.AUT','EC.DELIRIO.AUT','UB.DELIRIO.AUT','MV.DELIRIO.AUT','AR.DELIRIO.AUT','SR.DELIRIO.AUT','NR.DELIRIO.AUT','POE.DELIRIO.AUT','INVIT.DELIRIO.AUT','CUE.DELIRIO.AUT','RES.DELIRIO.AUT'];
+    if(!validPasswords.includes(value.toUpperCase())){ status.textContent='Clave incorrecta.'; return; }
+    const cfg=configs[prefix] || configs[prefix.replace(/\d+$/,'')];
+    const authorName=document.getElementById('authorName');
+    const authorSection=document.getElementById('authorSection');
+    const authorSectionSelect=document.getElementById('authorSectionSelect');
+    const authorBlog=document.getElementById('authorBlog');
+    const blogField=document.getElementById('blogField'), typeField=document.getElementById('typeField');
+
+    authorName.value=cfg.autor;
+    authorSection.value=cfg.seccion;
+    authorBlog.value=cfg.blog;
+
+    // Los datos conocidos quedan bloqueados; los datos desconocidos quedan abiertos para captura.
+    authorName.readOnly=!!cfg.autor;
+    authorSection.readOnly=!!cfg.seccion;
+    authorBlog.readOnly=!!cfg.blog;
+
+    // RES puede ser NARRATIVA o CINE. Se muestra una lista desplegable para elegir la sección.
+    if(prefix==='RES'){
+      authorSection.style.display='none';
+      authorSectionSelect.style.display='block';
+      authorSectionSelect.value='NARRATIVA';
+      authorSectionSelect.addEventListener('change',()=>{ authorSection.value=authorSectionSelect.value; });
+      authorSection.value=authorSectionSelect.value;
+    }else{
+      authorSection.style.display='';
+      authorSectionSelect.style.display='none';
+    }
+
+    blogField.style.display = cfg.blog ? '' : 'none';
+    typeField.style.display = ['CUE','RES'].includes(prefix) ? '' : 'none';
+    form.style.display='none'; panel.style.display='block'; status.textContent='';
+  });
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxu2P7oZ-xTgEtlBg7OT1QFZ7LjSfrOyrwVxvp_NkGK1Ybe7ShNoZzQcTJLAogoMkc7/exec';
+
+  panel.addEventListener('submit', async e => {
+    e.preventDefault();
+    const mensaje=document.getElementById('submissionStatus');
+    const boton=panel.querySelector('button[type="submit"]');
+    mensaje.textContent='Enviando escrito...';
+    boton.disabled=true;
+    const datos={
+      autor:document.getElementById('authorName').value.trim(),
+      seccion:document.getElementById('authorSection').value.trim(),
+      blog:document.getElementById('authorBlog').value.trim(),
+      tipo:document.getElementById('authorType') ? document.getElementById('authorType').value : '',
+      titulo:panel.querySelector('[name="titulo"]').value.trim(),
+      fecha:panel.querySelector('[name="fecha"]').value.trim(),
+      contenido:panel.querySelector('[name="contenido"]').value
+    };
+    try{
+      const respuesta=await fetch(APPS_SCRIPT_URL,{
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify(datos)
+      });
+      const resultado=await respuesta.json();
+      if(!resultado.ok) throw new Error(resultado.error || 'No se pudo recibir el escrito.');
+      mensaje.textContent='Escrito enviado correctamente.';
+      panel.reset();
+      document.getElementById('authorName').value=datos.autor;
+      document.getElementById('authorSection').value=datos.seccion;
+      document.getElementById('authorBlog').value=datos.blog;
+      if(document.getElementById('authorSectionSelect').style.display!=='none'){
+        document.getElementById('authorSectionSelect').value=datos.seccion;
+      }
+    }catch(error){
+      console.error(error);
+      mensaje.textContent='No se pudo enviar el escrito. Inténtalo nuevamente.';
+    }finally{
+      boton.disabled=false;
+    }
+  });
+})();
+</script>
+  <aside class="mini">
+    <img class="cover" src="imagenes/PORTADA-AGO.png" alt="Portada de agosto">
+    <h3 class="mini-title">AGOSTO 2026</h3>
+    <a class="mini-box mini-link" href="SR_01.html">
+      <h3>COLABORACIÓN</h3>
+      <p><span class="star">★</span>Desorden mental y una pizca de creatividad</p>
+      <div class="mini-author">Santiago Riojas</div>
+    </a>
+    <a class="instagram" href="https://www.instagram.com/delirio_revista" target="_blank" rel="noopener"><strong>Delirio</strong><span>EN INSTAGRAM</span><span>@Delirio_revista</span></a>
+    <a class="mini-box mini-link" href="NR_01.html">
+      <h3><em>Birdie</em></h3>
+      <p>Si vuelves, si me buscas, si regresas, no importa cuando, ni como, dime donde, que solo quiero eso. Yo dejaré que me encuentres. Casi no le tengo miedo a nada; pero nunca dejar de sentir esto me tiene aterrada. Sé que mereces el amor que yo te ofrezco, pero yo, no merezco el fallido intento de amor que te agradezco; aún así vuelve, que siento que me ahogo.</p>
+      <div class="mini-author">Natalia Regnier</div>
+    </a>
+    <div class="ad">ANUNCIO</div>
+    <div class="birthday"><div class="day">16</div><div class="month">AGOSTO</div><div class="name">DAVID PAREDES HERNÁNDEZ</div><small>CUMPLEAÑOS<br>CREADOR DE ESTA REVISTA</small></div>
+    <div class="mini-access"><a href="autores.html">AUTORES</a><a href="revision.html">REVISIÓN</a></div>
+  </aside>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-instagram">◎</div>
+  <div class="footer-links"><a href="blog.html">Blog</a><a href="revista.html">Revista</a><a href="poesia.html">Poesía</a></div>
+  <img class="footer-logo" src="imagenes/LOGOSINFONDO.png" alt="Delirio">
+  <div class="footer-text">Revista mensual digital para sentir y crear mientras se documenta la vida.<br>Creada en abril de 2026.</div>
+</footer>
+</main></div>
+<script src="delirio.js"></script>
+</body>
+</html>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Revista — Delirio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Benne&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,700;0,900;1,900&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --fondo:#f8f7f5;
+  --rojo:#af322f;
+  --beige:#efe6da;
+  --gris:#a6a6a6;
+  --negro:#010101;
+  --texto:#111111;
+  --linea:#111111;
+  --logo-filter:none;
+}
+
+body.dark{
+  --fondo:#404040;
+  --rojo:#af322f;
+  --beige:#efe6da;
+  --gris:#d9d9d9;
+  --negro:#ffffff;
+  --texto:#ffffff;
+  --linea:#ffffff;
+  --logo-filter:invert(1);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--gris);
+  color:var(--texto);
+  overflow-x:hidden;
+}
+
+body{
+  font-family:'Benne',serif;
+}
+
+/* =========================================================
+   ESCALA ÚNICA: la composición de 1000 px se conserva
+   tanto en computadora como en celular.
+   ========================================================= */
+
+#top-banner{
+  position:fixed;
+  z-index:1000;
+  top:0;
+  left:50%;
+  width:1000px;
+  height:82px;
+  transform-origin:top center;
+  transform:translateX(-50%) scale(var(--page-scale,1));
+  background:var(--negro);
+  color:var(--fondo);
+  display:grid;
+  grid-template-columns:150px 1fr 180px 75px;
+  align-items:center;
+  padding:0 42px;
+}
+
+.banner-menu{
+  width:54px;
+  height:42px;
+  border:0;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:7px;
+  cursor:pointer;
+  padding:0;
+}
+.banner-menu span{
+  display:block;
+  width:47px;
+  height:2px;
+  background:var(--fondo);
+}
+
+.banner-logo{
+  width:150px;
+  height:auto;
+  display:block;
+  margin:auto;
+  filter:var(--logo-filter);
+}
+
+.edicion{
+  color:var(--fondo);
+  text-decoration:none;
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+  line-height:1.05;
+  font-weight:800;
+  text-transform:uppercase;
+  text-align:center;
+}
+.edicion:hover{text-decoration:underline}
+
+.lupa-banner{
+  width:27px;
+  height:27px;
+  border:3px solid var(--fondo);
+  border-radius:50%;
+  position:relative;
+  justify-self:end;
+}
+.lupa-banner:after{
+  content:"";
+  position:absolute;
+  width:11px;
+  height:3px;
+  background:var(--fondo);
+  right:-9px;
+  bottom:-5px;
+  transform:rotate(48deg);
+}
+
+/* ========================================================= */
+
+.page-wrap{
+  width:100%;
+  position:relative;
+}
+
+.page{
+  width:1000px;
+  margin:0 auto;
+  transform-origin:top center;
+  transform:scale(var(--page-scale,1));
+}
+
+/* Espacio reservado para el banner fijo */
+.banner-space{
+  height:82px;
+}
+
+.header{
+  padding:22px 58px 0;
+}
+
+/* Encabezado de sección para páginas internas. */
+.section-heading{
+  margin:0 0 7px;
+  color:var(--texto);
+  font-family:'Benne',serif;
+  font-size:30px;
+  line-height:1;
+  font-weight:400;
+  text-transform:uppercase;
+}
+
+.logo-principal{
+  display:block;
+  width:470px;
+  margin:0 auto 25px;
+  filter:var(--logo-filter);
+}
+
+.header-line{
+  border-top:2px solid var(--linea);
+  margin:0 0 11px;
+}
+
+.header-grid{
+  display:grid;
+  grid-template-columns:1fr 330px;
+  column-gap:25px;
+  align-items:start;
+}
+
+/* Navegación */
+.nav{
+  display:grid;
+  grid-template-columns:repeat(3,max-content);
+  grid-auto-rows:27px;
+  column-gap:35px;
+  row-gap:1px;
+  align-content:start;
+}
+
+.nav a{
+  color:var(--texto);
+  font-family:'Poppins',sans-serif;
+  font-size:17px;
+  font-weight:800;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.nav a:first-child{color:var(--rojo)}
+
+/* Búsqueda + tema + fecha */
+.tools{
+  display:grid;
+  grid-template-columns:1fr 34px;
+  grid-template-rows:38px 28px 42px;
+  column-gap:10px;
+  align-items:start;
+}
+
+.search{
+  grid-column:1;
+  height:38px;
+  border:2px solid var(--linea);
+  background:transparent;
+  color:var(--texto);
+  padding:5px 10px;
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+  outline:none;
+}
+.search::placeholder{color:var(--texto);opacity:.8}
+
+.search-button{
+  grid-column:2;
+  width:34px;
+  height:38px;
+  border:0;
+  background:transparent;
+  position:relative;
+  cursor:pointer;
+}
+.search-button:before{
+  content:"";
+  position:absolute;
+  width:21px;
+  height:21px;
+  border:3px solid var(--gris);
+  border-radius:50%;
+  top:3px;
+  left:3px;
+}
+.search-button:after{
+  content:"";
+  position:absolute;
+  width:13px;
+  height:3px;
+  background:var(--gris);
+  transform:rotate(45deg);
+  left:21px;
+  top:25px;
+}
+
+.search-label{
+  grid-column:1;
+  font-family:'Poppins',sans-serif;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  margin-top:2px;
+}
+
+.theme{
+  grid-column:1 / span 2;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Poppins',sans-serif;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.theme button{
+  border:0;
+  background:transparent;
+  color:var(--texto);
+  font-size:24px;
+  cursor:pointer;
+  padding:0;
+}
+
+.date{
+  grid-column:1 / span 2;
+  text-align:right;
+  font-family:'Benne',serif;
+  font-size:14px;
+  letter-spacing:.4px;
+  line-height:1.05;
+}
+
+.main-line{
+  border-top:2px solid var(--linea);
+  margin:5px 0 26px;
+}
+
+/* =========================================================
+   CONTENIDO PRINCIPAL — 2 columnas de notas + MINI
+   ========================================================= */
+
+.content{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 235px;
+  column-gap:30px;
+  padding:0 52px;
+}
+
+.content > div{
+  min-width:0;
+}
+
+.content > div .revista-visor,
+.content > div .download-wrap{
+  width:100%;
+}
+
+.note-column{
+  display:flex;
+  flex-direction:column;
+  gap:34px;
+}
+
+.note{
+  padding-bottom:18px;
+  border-bottom:1px solid var(--linea);
+}
+
+.note h2{
+  margin:0 0 7px;
+  font-family:'Playfair Display',serif;
+  font-size:31px;
+  line-height:1.02;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.note h2 a{
+  color:var(--texto);
+  text-decoration:none;
+}
+
+.note .title{
+  font-size:24px;
+  line-height:1.08;
+  margin:0 0 8px;
+}
+
+.star{
+  color:var(--rojo);
+  font-family:Georgia,serif;
+  font-size:25px;
+  margin-right:4px;
+}
+
+.author{
+  margin-top:15px;
+  text-align:right;
+  font-family:'Poppins',sans-serif;
+  font-size:12px;
+  font-weight:600;
+  font-variant:small-caps;
+  letter-spacing:.3px;
+}
+
+.feature{
+  border-bottom:1px solid var(--linea);
+  padding-bottom:16px;
+}
+.feature h2{
+  font-size:30px;
+}
+
+.recommendation{
+  grid-column:1 / span 2;
+  margin-top:5px;
+  border-top:2px solid var(--linea);
+  border-bottom:2px solid var(--linea);
+  padding:14px 0 20px;
+}
+.recommendation .label{
+  color:var(--rojo);
+  font-family:'Poppins',sans-serif;
+  font-size:15px;
+  font-weight:600;
+  text-transform:uppercase;
+}
+.recommendation h3{
+  margin:3px 0 10px;
+  font-family:'Poppins',sans-serif;
+  font-size:25px;
+  font-weight:900;
+}
+.recommendation .book{
+  font-size:26px;
+}
+.recommendation .rec-author{
+  text-align:right;
+  font-family:'Poppins',sans-serif;
+  font-size:13px;
+  font-variant:small-caps;
+  font-weight:600;
+}
+
+/* MINI */
+.mini{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.cover{
+  width:100%;
+  height:315px;
+  object-fit:cover;
+  object-position:center;
+}
+
+.mini-title{
+  font-family:'Playfair Display',serif;
+  font-size:21px;
+  font-weight:900;
+  text-transform:uppercase;
+  margin:0;
+}
+
+.mini-box{
+  border-top:2px solid var(--linea);
+  padding-top:14px;
+}
+
+.mini-box h3{
+  font-family:'Playfair Display',serif;
+  font-size:25px;
+  margin:0 0 7px;
+  text-transform:uppercase;
+}
+
+.mini-box p{
+  font-size:17px;
+  line-height:1.08;
+  margin:0;
+}
+
+.mini-author{
+  margin-top:10px;
+  text-align:right;
+  font-family:'Poppins',sans-serif;
+  font-size:11px;
+  font-variant:small-caps;
+  font-weight:600;
+}
+
+.instagram{
+  background:var(--rojo);
+  color:var(--fondo);
+  padding:20px;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+}
+.instagram strong{
+  display:block;
+  font-size:22px;
+  font-weight:900;
+}
+.instagram span{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-top:7px;
+}
+
+.ad{
+  height:150px;
+  background:var(--beige);
+  display:flex;
+  align-items:flex-end;
+  padding:12px;
+  font-family:'Poppins',sans-serif;
+  font-size:10px;
+}
+
+.birthday{
+  background:var(--beige);
+  padding:18px 12px;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+}
+.birthday .day{
+  font-size:52px;
+  line-height:.9;
+  font-weight:900;
+}
+.birthday .month{
+  font-size:18px;
+  font-weight:900;
+  margin-top:7px;
+}
+.birthday .name{
+  font-size:12px;
+  font-weight:600;
+  margin-top:12px;
+}
+.birthday small{
+  display:block;
+  font-size:9px;
+  margin-top:5px;
+}
+
+/* Galería */
+.gallery{
+  grid-column:1 / span 2;
+  margin-top:8px;
+  border-top:2px solid var(--linea);
+  border-bottom:2px solid var(--linea);
+  padding:14px 0 22px;
+}
+.gallery h3{
+  margin:0 0 20px;
+  font-family:'Poppins',sans-serif;
+  font-size:25px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.gallery img{
+  width:100%;
+  height:205px;
+  object-fit:cover;
+}
+
+/* Tarjetas de redes/edición */
+.cards{
+  grid-column:1 / span 2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  border-bottom:2px solid var(--linea);
+  padding:22px 0;
+}
+.card-red,
+.card-black{
+  min-height:150px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+}
+.card-red{
+  background:var(--rojo);
+  color:var(--fondo);
+}
+.card-black{
+  background:var(--negro);
+  color:var(--fondo);
+}
+.card-red strong,
+.card-black strong{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:36px;
+}
+.card-red span,
+.card-black span{
+  font-weight:800;
+  font-size:15px;
+}
+.card-black small{
+  font-family:'Benne',serif;
+  font-size:18px;
+}
+
+/* Últimas notas */
+.bottom-notes{
+  grid-column:1 / span 2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:45px;
+  padding:30px 0 45px;
+}
+
+/* Footer */
+.footer{
+  width:100%;
+  background:var(--rojo);
+  color:var(--fondo);
+  display:grid;
+  grid-template-columns:150px 170px 1fr 330px;
+  align-items:center;
+  gap:30px;
+  padding:35px 52px;
+  margin-top:10px;
+  min-height:155px;
+}
+
+.footer-instagram{
+  font-family:'Poppins',sans-serif;
+  font-size:42px;
+  text-align:center;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  font-family:'Poppins',sans-serif;
+  font-weight:800;
+  font-size:14px;
+  text-decoration:underline;
+}
+
+.footer-logo{
+  width:210px;
+  filter:none;
+}
+
+.footer-text{
+  font-size:17px;
+  line-height:1.15;
+}
+
+/* Menú */
+.menu-panel{
+  position:fixed;
+  z-index:1100;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(1,1,1,.96);
+  color:white;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.menu-panel.open{display:flex}
+.menu-panel nav{
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+  text-align:center;
+}
+.menu-panel a{
+  color:white;
+  font-family:'Poppins',sans-serif;
+  font-size:30px;
+  font-weight:800;
+  text-decoration:none;
+}
+.menu-close{
+  position:absolute;
+  top:25px;
+  right:35px;
+  background:transparent;
+  color:white;
+  border:0;
+  font-size:35px;
+  cursor:pointer;
+}
+
+/* Resultados de búsqueda */
+.search-result-hidden{display:none !important}
+.no-results{
+  display:none;
+  grid-column:1 / span 2;
+  font-family:'Poppins',sans-serif;
+  font-size:18px;
+  padding:25px 0;
+}
+
+/* =========================================================
+   MODO OSCURO: negro -> blanco; rojo -> amarillo
+   ========================================================= */
+body.dark .card-black{
+  background:#ffffff;
+  color:#010101;
+}
+body.dark .menu-panel{
+  background:rgba(255,255,255,.97);
+}
+body.dark .menu-panel a,
+body.dark .menu-close{
+  color:#010101;
+}
+
+/* El PDF es la referencia visual; no hacemos layout móvil */
+@media(max-width:1000px){
+  body{min-width:0}
+}
+
+.page{background:var(--fondo);}
+.search-dropdown{position:absolute;left:0;right:0;bottom:100%;margin-bottom:7px;background:#fff;color:#111;border:1px solid #545454;z-index:20;display:none;max-height:190px;overflow:auto;}
+.search-dropdown.open{display:block;}
+.search-dropdown a{display:block;padding:10px 12px;text-decoration:none;color:#111;border-bottom:1px solid #ddd;font-family:'Benne',serif;font-size:17px;line-height:1.1;}
+.search-dropdown a:last-child{border-bottom:0;}
+.search-dropdown small{display:block;font-family:'Poppins',sans-serif;font-size:10px;margin-top:4px;font-variant:small-caps;}
+.search-dropdown .empty{padding:12px;font-family:'Poppins',sans-serif;font-size:12px;}
+.tools{position:relative;}
+.mini-link{text-decoration:none;color:inherit;display:block;}
+.mini-link:hover{opacity:.9;}
+.mini-access{display:flex;justify-content:space-between;gap:15px;font-family:'Poppins',sans-serif;font-weight:800;font-size:12px;text-decoration:underline;}
+.mini-access a{color:var(--texto);}
+body.dark .mini-access a{color:#fff;}
+@media(max-width:1000px){body{background:var(--gris);}}
+
+</style>
+</head>
+<body>
+<header id="top-banner">
+  <button class="banner-menu" id="menuButton" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <a href="inicio.html"><img class="banner-logo" src="imagenes/LOGOSINFONDO.png" alt="Delirio"></a>
+  <a class="edicion" href="revista.html">EDICIÓN<br>ACTUAL</a>
+  <button class="lupa-banner" id="bannerSearch" aria-label="Buscar"></button>
+</header>
+
+<div class="menu-panel" id="menuPanel">
+  <button class="menu-close" id="menuClose">×</button>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="blog.html">Blog</a>
+    <a class="active" href="revista.html">Revista</a>
+    <a href="poesia.html">Poesía</a>
+    <a href="cine.html">Cine</a>
+    <a href="narrativa.html">Narrativa</a>
+  </nav>
+</div>
+
+<div class="page-wrap" id="pageWrap">
+<main class="page" id="page">
+<div class="banner-space"></div>
+
+<section class="header">
+  <div class="section-heading">REVISTA</div>
+  <div class="header-line"></div>
+  <div class="header-grid">
+    <nav class="nav">
+      <a href="inicio.html">Inicio</a>
+      <a class="active" href="revista.html">Revista</a>
+      <a href="poesia.html">Poesía</a>
+      <a href="blog.html">Blog</a>
+      <a href="cine.html">Cine</a>
+      <a href="narrativa.html">Narrativa</a>
+    </nav>
+    <div class="tools">
+      <input class="search" id="searchInput" type="search">
+      <button class="search-button" id="searchButton" aria-label="Buscar"></button>
+      <div class="search-label">Buscar</div>
+      <div class="search-dropdown" id="searchDropdown"></div>
+      <div class="theme"><span>Tema</span><button id="themeButton" aria-label="Cambiar tema">☼</button><span id="themeMoon">☾</span></div>
+      <div class="date" id="fechaTexto"></div>
+    </div>
+  </div>
+  <div class="main-line"></div>
+</section>
+
+<section class="content" id="content">
+
+  <div>
+    <section class="recommendation searchable" data-title="DELIRIO Nº 3 AGOSTO 2026 OJOS QUE NO SE OLVIDAN" data-author="Delirio" style="margin-top:0;">
+      <div class="label">EDICIÓN ACTUAL</div>
+      <h3>REVISTA Nº 3</h3>
+      <div class="book">«Ojos que no se olvidan»</div>
+      <div class="rec-author">Agosto 2026</div>
+    </section>
+
+    <section class="revista-visor" style="width:100%;margin:18px 0 0;">
+      <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;">
+        <iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/Delirio/eqdu/" title="DELIRIO nº 3 AGOSTO 2026" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+      </div>
+    </section>
+
+    <div class="download-wrap" style="width:100%;display:flex;justify-content:center;align-items:center;padding:24px 16px 10px;">
+      <a class="download-button" href="https://drive.google.com/uc?export=download&id=1mzRLn_m7nizJeJnxFEOupiXOLzxvJ9tI" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;background:#111;color:#fff;padding:16px 34px;border:2px solid #111;border-radius:999px;font-family:'Poppins',sans-serif;font-size:17px;font-weight:700;letter-spacing:.3px;transition:.25s ease;">
+        <span style="font-size:20px;line-height:1;">⬇</span><span>Descargar PDF</span>
+      </a>
+    </div>
+
+    <section class="cards" style="margin-top:20px;">
+      <a class="card-red" href="https://www.instagram.com/delirio_revista" target="_blank" rel="noopener"><strong>Delirio</strong><span>EN INSTAGRAM</span><span>@Delirio_revista</span></a>
+      <a class="card-black" href="revista.html"><strong>Delirio</strong><span>EDICIÓN ACTUAL</span><small>Revista nº 3 &gt;</small></a>
+    </section>
+  </div>
+
+  <aside class="mini">
+    <img class="cover" src="imagenes/PORTADA-AGO.png" alt="Portada de agosto">
+    <h3 class="mini-title">AGOSTO 2026</h3>
+
+    <a class="mini-box mini-link" href="SR_01.html">
+      <h3>COLABORACIÓN</h3>
+      <p><span class="star">★</span>Desorden mental y una pizca de creatividad</p>
+      <div class="mini-author">Santiago Riojas</div>
+    </a>
+
+    <a class="instagram" href="https://www.instagram.com/delirio_revista" target="_blank" rel="noopener"><strong>Delirio</strong><span>EN INSTAGRAM</span><span>@Delirio_revista</span></a>
+
+    <a class="mini-box mini-link" href="NR_01.html">
+      <h3><em>Birdie</em></h3>
+      <p>Si vuelves, si me buscas, si regresas, no importa cuando, ni como, dime donde, que solo quiero eso. Yo dejaré que me encuentres. Casi no le tengo miedo a nada; pero nunca dejar de sentir esto me tiene aterrada. Sé que mereces el amor que yo te ofrezco, pero yo, no merezco el fallido intento de amor que te agradezco; aún así vuelve, que siento que me ahogo.</p>
+      <div class="mini-author">Natalia Regnier</div>
+    </a>
+
+    <div class="ad">ANUNCIO</div>
+
+    <div class="birthday"><div class="day">16</div><div class="month">AGOSTO</div><div class="name">DAVID PAREDES HERNÁNDEZ</div><small>CUMPLEAÑOS<br>CREADOR DE ESTA REVISTA</small></div>
+
+    <div class="mini-access"><a href="autores.html">AUTORES</a><a href="agregar-entrada.html">REVISIÓN</a></div>
+  </aside>
+
+  <div class="no-results" id="noResults">NO HAY RESULTADOS</div>
+</section>
+
+<footer class="footer">
+  <div class="footer-instagram">◎</div>
+  <div class="footer-links"><a href="blog.html">Blog</a><a href="revista.html">Revista</a><a href="poesia.html">Poesía</a></div>
+  <img class="footer-logo" src="imagenes/LOGOSINFONDO.png" alt="Delirio">
+  <div class="footer-text">Revista mensual digital para sentir y crear mientras se documenta la vida.<br>Creada en abril de 2026.</div>
+</footer>
+
+</main></div>
+
+<script>
+const fechaActual=new Date(),fechaInicio=new Date(2026,3,28),diaNumero=Math.floor((fechaActual-fechaInicio)/86400000)+1;
+const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],diasSemana=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+document.getElementById('fechaTexto').textContent=`${meses[fechaActual.getMonth()]} ${fechaActual.getDate()}, ${fechaActual.getFullYear()} // Día ${diaNumero} // ${diasSemana[fechaActual.getDay()]}`;
+const page=document.getElementById('page'),pageWrap=document.getElementById('pageWrap');
+function ajustarEscala(){const escala=Math.min(1,window.innerWidth/1000);document.documentElement.style.setProperty('--page-scale',escala);requestAnimationFrame(()=>pageWrap.style.height=(page.offsetHeight*escala)+'px')}
+addEventListener('resize',ajustarEscala);addEventListener('load',ajustarEscala);ajustarEscala();
+const themeButton=document.getElementById('themeButton');
+themeButton.onclick=()=>{document.body.classList.toggle('dark');themeButton.textContent=document.body.classList.contains('dark')?'☀':'☼';localStorage.setItem('delirio-tema',document.body.classList.contains('dark')?'dark':'light');ajustarEscala()};
+if(localStorage.getItem('delirio-tema')==='dark'){document.body.classList.add('dark');themeButton.textContent='☀'}
+const menuPanel=document.getElementById('menuPanel');
+document.getElementById('menuButton').onclick=()=>menuPanel.classList.add('open');document.getElementById('menuClose').onclick=()=>menuPanel.classList.remove('open');
+const searchInput=document.getElementById('searchInput'),searchButton=document.getElementById('searchButton'),dropdown=document.getElementById('searchDropdown'),noResults=document.getElementById('noResults');
+const searchable=[...document.querySelectorAll('.searchable')];
+function buscar(){const q=searchInput.value.trim().toLowerCase();dropdown.innerHTML='';let matches=searchable.filter(x=>x.innerText.toLowerCase().includes(q));if(!q){dropdown.classList.remove('open');noResults.style.display='none';return}if(matches.length){matches.forEach(x=>{const a=document.createElement('a');a.href=x.dataset.href||'revista.html';a.innerHTML=`${x.dataset.title||x.innerText}<small>${x.dataset.author||'Delirio'}</small>`;dropdown.appendChild(a)});dropdown.classList.add('open');noResults.style.display='none'}else{dropdown.innerHTML='<div class="empty">NO HAY RESULTADOS</div>';dropdown.classList.add('open');noResults.style.display='none'}ajustarEscala()}
+searchButton.onclick=buscar;searchInput.addEventListener('keydown',e=>{if(e.key==='Enter')buscar()});searchInput.addEventListener('input',buscar);
+document.getElementById('bannerSearch').onclick=()=>{searchInput.focus();searchInput.scrollIntoView({behavior:'smooth',block:'center'})};
+document.addEventListener('click',e=>{if(!e.target.closest('.tools'))dropdown.classList.remove('open')});
+</script>
+</body></html>

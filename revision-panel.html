@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Revisión — Delirio</title>
+<link rel="stylesheet" href="delirio.css">
+</head>
+<body>
+<header id="top-banner">
+  <button class="banner-menu" id="menuButton" aria-label="Menú"><span></span><span></span><span></span></button>
+  <a href="inicio.html"><img class="banner-logo" src="imagenes/LOGOSINFONDO.png" alt="Delirio"></a>
+  <a class="edicion" href="revista.html">EDICIÓN<br>ACTUAL</a>
+  <button class="lupa-banner" id="bannerSearch" aria-label="Buscar"></button>
+</header>
+
+<div class="menu-panel" id="menuPanel">
+  <button class="menu-close" id="menuClose">×</button>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a class="" href="blog.html">Blog</a>
+    <a href="revista.html">Revista</a>
+    <a href="poesia.html">Poesía</a>
+    <a href="cine.html">Cine</a>
+    <a href="narrativa.html">Narrativa</a>
+  </nav>
+</div>
+
+<div class="page-wrap" id="pageWrap">
+<main class="page" id="page">
+<div class="banner-space"></div>
+
+<section class="header">
+  <div class="section-heading">REVISIÓN</div>
+  <div class="header-line"></div>
+  <div class="header-grid">
+    <nav class="nav"><a class="" href="inicio.html">Inicio</a><a class="" href="revista.html">Revista</a><a class="" href="poesia.html">Poesía</a><a class="" href="blog.html">Blog</a><a class="" href="cine.html">Cine</a><a class="" href="narrativa.html">Narrativa</a></nav>
+    <div class="tools">
+      <input class="search" id="searchInput" type="search">
+      <button class="search-button" id="searchButton" aria-label="Buscar"></button>
+      <div class="search-label">Buscar</div>
+      <div class="search-dropdown" id="searchDropdown"></div>
+      <div class="theme"><span>Tema</span><button id="themeButton" aria-label="Cambiar tema">☼</button></div>
+      <div class="date" id="fechaTexto"></div>
+    </div>
+  </div>
+  <div class="main-line"></div>
+</section>
+
+<section class="content">
+  
+<div>
+  <h2 class="page-title">REVISIÓN</h2>
+  <table class="review-table">
+    <thead><tr><th>Autor(a)</th><th>Sección</th><th>Título</th><th>Estado</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>David Paredes Hernández</td><td>Blog</td><td>Cuatro patas y un corazón enorme</td><td>EN REVISIÓN</td><td><button class="review-open">ABRIR</button></td></tr>
+      <tr><td>David Paredes Hernández</td><td>Blog</td><td>¿Dónde se aprende a olvidar?</td><td>EN REVISIÓN</td><td><button class="review-open">ABRIR</button></td></tr>
+    </tbody>
+  </table>
+  <div class="review-editor" id="reviewEditor">
+    <h2>EDITAR ESCRITO</h2>
+    <div class="auth-field"><label>Autor(a)</label><input value="David Paredes Hernández"></div>
+    <div class="auth-field"><label>Título</label><input value="Cuatro patas y un corazón enorme"></div>
+    <div class="auth-field"><label>Texto</label><textarea>Si vuelves, si me buscas, si regresas, no importa cuando, ni como, dime donde, que solo quiero eso. Yo dejaré que me encuentres.</textarea></div>
+    <button class="button">VISTA PREVIA</button>
+    <button class="button">AUTORIZAR Y PUBLICAR</button>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.review-open').forEach(b=>b.addEventListener('click',()=>document.getElementById('reviewEditor').classList.add('open')));
+</script>
+
+  <aside class="mini">
+    <img class="cover" src="imagenes/PORTADA-AGO.png" alt="Portada de agosto">
+    <h3 class="mini-title">AGOSTO 2026</h3>
+    <a class="mini-box mini-link" href="SR_01.html">
+      <h3>COLABORACIÓN</h3>
+      <p><span class="star">★</span>Desorden mental y una pizca de creatividad</p>
+      <div class="mini-author">Santiago Riojas</div>
+    </a>
+    <a class="instagram" href="https://www.instagram.com/delirio_revista" target="_blank" rel="noopener"><strong>Delirio</strong><span>EN INSTAGRAM</span><span>@Delirio_revista</span></a>
+    <a class="mini-box mini-link" href="NR_01.html">
+      <h3><em>Birdie</em></h3>
+      <p>Si vuelves, si me buscas, si regresas, no importa cuando, ni como, dime donde, que solo quiero eso. Yo dejaré que me encuentres. Casi no le tengo miedo a nada; pero nunca dejar de sentir esto me tiene aterrada. Sé que mereces el amor que yo te ofrezco, pero yo, no merezco el fallido intento de amor que te agradezco; aún así vuelve, que siento que me ahogo.</p>
+      <div class="mini-author">Natalia Regnier</div>
+    </a>
+    <div class="ad">ANUNCIO</div>
+    <div class="birthday"><div class="day">16</div><div class="month">AGOSTO</div><div class="name">DAVID PAREDES HERNÁNDEZ</div><small>CUMPLEAÑOS<br>CREADOR DE ESTA REVISTA</small></div>
+    <div class="mini-access"><a href="autores.html">AUTORES</a><a href="revision.html">REVISIÓN</a></div>
+  </aside>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-instagram">◎</div>
+  <div class="footer-links"><a href="blog.html">Blog</a><a href="revista.html">Revista</a><a href="poesia.html">Poesía</a></div>
+  <img class="footer-logo" src="imagenes/LOGOSINFONDO.png" alt="Delirio">
+  <div class="footer-text">Revista mensual digital para sentir y crear mientras se documenta la vida.<br>Creada en abril de 2026.</div>
+</footer>
+</main></div>
+<script src="delirio.js"></script>
+</body>
+</html>
