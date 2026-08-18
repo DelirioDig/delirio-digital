@@ -1,77 +1,46 @@
 (function(){
 
-  /*
-  ============================================================
-  DELIRIO DIGITAL
-  ESCALA GENERAL DE LA PÁGINA
-  ============================================================
-  La página está diseñada originalmente en 1000px.
-  En pantallas pequeñas se reduce proporcionalmente,
-  manteniendo exactamente la distribución de PC.
-  ============================================================
-  */
+  /* ============================================================
+     ESCALA GENERAL DE LA PÁGINA
+     ============================================================ */
 
   const page = document.getElementById("page");
   const pageWrap = document.getElementById("pageWrap");
-  const banner = document.getElementById("top-banner");
 
   function scalePage(){
 
     if(!page || !pageWrap) return;
 
-    const baseWidth = 1000;
-    const viewportWidth = window.innerWidth;
-
-    /*
-      En PC nunca aumenta de tamaño.
-      En celular se reduce para que los 1000px
-      entren completos dentro de la pantalla.
-    */
-    const scale = Math.min(1, viewportWidth / baseWidth);
+    const scale = Math.min(1, window.innerWidth / 1000);
 
     document.documentElement.style.setProperty(
       "--page-scale",
       scale
     );
 
-    /*
-      El contenido visualmente mide:
-      1000px × escala
-
-      Se reserva esa altura para evitar que
-      el contenido siguiente se monte encima.
-    */
-    requestAnimationFrame(() => {
-
-      const pageHeight = page.offsetHeight;
-
+    requestAnimationFrame(()=>{
       pageWrap.style.height =
-        (pageHeight * scale) + "px";
-
+        (page.offsetHeight * scale) + "px";
     });
 
   }
 
   window.addEventListener("resize", scalePage);
-  window.addEventListener("orientationchange", scalePage);
   window.addEventListener("load", scalePage);
 
   scalePage();
 
 
-  /*
-  ============================================================
-  FECHA
-  ============================================================
-  */
+  /* ============================================================
+     FECHA
+     ============================================================ */
 
   const now = new Date();
   const start = new Date(2026,3,28);
 
   const dayNumber =
     Math.floor(
-      (now - start) /
-      (1000 * 60 * 60 * 24)
+      (now-start)/(1000*60*60*24)
     ) + 1;
 
   const months = [
@@ -110,11 +79,246 @@
   }
 
 
+  /* ============================================================
+     ============================================================
+     MINI GLOBAL
+     
+     TODO EL CONTENIDO DE LA COLUMNA MINI SE CONTROLA AQUÍ.
+
+     Para cambiar MINI en TODAS las páginas,
+     solamente modifica los datos de este bloque.
+
+     NO necesitas modificar cada HTML.
+     ============================================================
+     ============================================================ */
+
+  const MINI = {
+
+    /* PORTADA */
+
+    portada: "imagenes/PORTADA-AGO.png",
+
+    edicion: "AGOSTO 2026",
+
+
+    /* COLABORACIÓN */
+
+    colaboracion: {
+
+      titulo:
+        "Desorden mental y una pizca de creatividad",
+
+      autor:
+        "Santiago Riojas",
+
+      enlace:
+        "SR_01.html"
+
+    },
+
+
+    /* INSTAGRAM */
+
+    instagram: {
+
+      enlace:
+        "https://www.instagram.com/delirio_revista",
+
+      usuario:
+        "@Delirio_revista"
+
+    },
+
+
+    /* POESÍA */
+
+    poesia: {
+
+      titulo:
+        "Birdie",
+
+      texto:
+        "Si vuelves, si me buscas, si regresas, no importa cuando, ni como, dime donde, que solo quiero eso. Yo dejaré que me encuentres. Casi no le tengo miedo a nada; pero nunca dejar de sentir esto me tiene aterrada. Sé que mereces el amor que yo te ofrezco, pero yo, no merezco el fallido intento de amor que te agradezco; aún así vuelve, que siento que me ahogo.",
+
+      autor:
+        "Natalia Regnier",
+
+      enlace:
+        "NR_01.html"
+
+    },
+
+
+    /* ANUNCIO */
+
+    anuncio:
+      "ANUNCIO",
+
+
+    /* CUMPLEAÑOS */
+
+    cumpleanos: {
+
+      dia:
+        "16",
+
+      mes:
+        "AGOSTO",
+
+      nombre:
+        "DAVID PAREDES HERNÁNDEZ",
+
+      texto:
+        "CUMPLEAÑOS<br>CREADOR DE ESTA REVISTA"
+
+    },
+
+
+    /* ACCESOS */
+
+    acceso: {
+
+      autores:
+        "autores.html",
+
+      revision:
+        "agregar-entrada.html"
+
+    }
+
+  };
+
+
+  /* ============================================================
+     CONSTRUCCIÓN AUTOMÁTICA DE MINI
+     ============================================================ */
+
+  function construirMini(){
+
+    document.querySelectorAll(".mini").forEach(mini => {
+
+      mini.innerHTML = `
+
+        <img
+          class="cover"
+          src="${MINI.portada}"
+          alt="Portada de ${MINI.edicion}"
+        >
+
+        <h3 class="mini-title">
+          ${MINI.edicion}
+        </h3>
+
+
+        <a
+          class="mini-box mini-link"
+          href="${MINI.colaboracion.enlace}"
+        >
+
+          <h3>COLABORACIÓN</h3>
+
+          <p>
+            <span class="star">★</span>
+            ${MINI.colaboracion.titulo}
+          </p>
+
+          <div class="mini-author">
+            ${MINI.colaboracion.autor}
+          </div>
+
+        </a>
+
+
+        <a
+          class="instagram"
+          href="${MINI.instagram.enlace}"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <strong>Delirio</strong>
+
+          <span>EN INSTAGRAM</span>
+
+          <span>${MINI.instagram.usuario}</span>
+
+        </a>
+
+
+        <a
+          class="mini-box mini-link"
+          href="${MINI.poesia.enlace}"
+        >
+
+          <h3>
+            <em>${MINI.poesia.titulo}</em>
+          </h3>
+
+          <p>
+            ${MINI.poesia.texto}
+          </p>
+
+          <div class="mini-author">
+            ${MINI.poesia.autor}
+          </div>
+
+        </a>
+
+
+        <div class="ad">
+          ${MINI.anuncio}
+        </div>
+
+
+        <div class="birthday">
+
+          <div class="day">
+            ${MINI.cumpleanos.dia}
+          </div>
+
+          <div class="month">
+            ${MINI.cumpleanos.mes}
+          </div>
+
+          <div class="name">
+            ${MINI.cumpleanos.nombre}
+          </div>
+
+          <small>
+            ${MINI.cumpleanos.texto}
+          </small>
+
+        </div>
+
+
+        <div class="mini-access">
+
+          <a href="${MINI.acceso.autores}">
+            AUTORES
+          </a>
+
+          <a href="${MINI.acceso.revision}">
+            REVISIÓN
+          </a>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
   /*
-  ============================================================
-  TEMA CLARO / OSCURO
-  ============================================================
+    Se ejecuta después de cargar el documento.
   */
+
+  construirMini();
+
+
+  /* ============================================================
+     TEMA CLARO / OSCURO
+     ============================================================ */
 
   const theme =
     document.getElementById("themeButton");
@@ -125,8 +329,8 @@
 
     theme.textContent =
       document.body.classList.contains("dark")
-      ? "☀"
-      : "☼";
+        ? "☀"
+        : "☼";
 
   }
 
@@ -141,15 +345,15 @@
 
   syncTheme();
 
-  theme?.addEventListener("click", () => {
+  theme?.addEventListener("click",()=>{
 
     document.body.classList.toggle("dark");
 
     localStorage.setItem(
       "delirio-tema",
       document.body.classList.contains("dark")
-      ? "dark"
-      : "light"
+        ? "dark"
+        : "light"
     );
 
     syncTheme();
@@ -157,11 +361,9 @@
   });
 
 
-  /*
-  ============================================================
-  MENÚ
-  ============================================================
-  */
+  /* ============================================================
+     MENÚ
+     ============================================================ */
 
   const menu =
     document.getElementById("menuPanel");
@@ -170,22 +372,24 @@
     .getElementById("menuButton")
     ?.addEventListener(
       "click",
-      () => menu?.classList.add("open")
+      ()=>{
+        menu?.classList.add("open");
+      }
     );
 
   document
     .getElementById("menuClose")
     ?.addEventListener(
       "click",
-      () => menu?.classList.remove("open")
+      ()=>{
+        menu?.classList.remove("open");
+      }
     );
 
 
-  /*
-  ============================================================
-  BUSCADOR
-  ============================================================
-  */
+  /* ============================================================
+     BUSCADOR
+     ============================================================ */
 
   const searchInput =
     document.getElementById("searchInput");
@@ -196,20 +400,27 @@
   const searchable =
     [...document.querySelectorAll(".searchable")];
 
+
   function showSearch(){
 
-    if(!searchDropdown || !searchInput)
-      return;
+    if(
+      !searchDropdown ||
+      !searchInput
+    ) return;
 
     const q =
-      searchInput.value.trim().toLowerCase();
+      searchInput.value
+        .trim()
+        .toLowerCase();
 
     if(!q){
 
       searchDropdown.classList.remove("open");
+
       return;
 
     }
+
 
     const results =
       searchable
@@ -251,23 +462,35 @@
 
         });
 
+
     searchDropdown.innerHTML =
       results.length
 
-      ? results
-          .map(r =>
-            `<a href="${r.href}">
-              <strong>${r.title}</strong>
-              <span>${r.author}</span>
-            </a>`
-          )
-          .join("")
+        ? results
+            .map(r => `
 
-      : '<div class="search-no">NO HAY RESULTADOS</div>';
+              <a href="${r.href}">
+
+                <strong>
+                  ${r.title}
+                </strong>
+
+                <span>
+                  ${r.author}
+                </span>
+
+              </a>
+
+            `)
+            .join("")
+
+        : '<div class="search-no">NO HAY RESULTADOS</div>';
+
 
     searchDropdown.classList.add("open");
 
   }
+
 
   searchInput?.addEventListener(
     "input",
@@ -278,8 +501,9 @@
     "keydown",
     e => {
 
-      if(e.key === "Enter")
+      if(e.key === "Enter"){
         showSearch();
+      }
 
     }
   );
@@ -295,7 +519,7 @@
     .getElementById("bannerSearch")
     ?.addEventListener(
       "click",
-      () => {
+      ()=>{
 
         searchInput?.focus();
 
@@ -308,11 +532,9 @@
     );
 
 
-  /*
-  ============================================================
-  GALERÍA
-  ============================================================
-  */
+  /* ============================================================
+     GALERÍA — ÚNICAMENTE INICIO
+     ============================================================ */
 
   const modal =
     document.getElementById("galleryModal");
@@ -327,64 +549,87 @@
       "galleryCaption"
     );
 
+
   document
     .querySelectorAll(".gallery-grid img")
     .forEach(img => {
 
-      img.addEventListener("click", () => {
+      img.addEventListener(
+        "click",
+        ()=>{
 
-        if(!modal) return;
+          if(!modal) return;
 
-        modalImage.src = img.src;
-        modalImage.alt = img.alt;
+          modalImage.src =
+            img.src;
 
-        const author =
-          img.dataset.author || "";
+          modalImage.alt =
+            img.alt;
 
-        caption.innerHTML =
-          `<strong>${img.dataset.title || img.alt}</strong>
-           <span>${author}</span>`;
+          const author =
+            img.dataset.author || "";
 
-        modal.classList.add("open");
+          caption.innerHTML = `
 
-      });
+            <strong>
+              ${img.dataset.title || img.alt}
+            </strong>
+
+            <span>
+              ${author}
+            </span>
+
+          `;
+
+          modal.classList.add("open");
+
+        }
+      );
 
     });
+
 
   document
     .getElementById("galleryClose")
     ?.addEventListener(
       "click",
-      () => modal?.classList.remove("open")
+      ()=>{
+        modal?.classList.remove("open");
+      }
     );
+
 
   modal?.addEventListener(
     "click",
     e => {
 
-      if(e.target === modal)
+      if(e.target === modal){
+
         modal.classList.remove("open");
+
+      }
 
     }
   );
 
 
-  /*
-  ============================================================
-  TAMAÑO DE LETRA EN ENTRADAS
-  ============================================================
-  */
+  /* ============================================================
+     TAMAÑO DE LETRA EN ENTRADAS
+     ============================================================ */
 
   const articleText =
-    document.getElementById("articleText");
+    document.getElementById(
+      "articleText"
+    );
 
   let fontSize = 18;
+
 
   document
     .getElementById("fontPlus")
     ?.addEventListener(
       "click",
-      () => {
+      ()=>{
 
         fontSize =
           Math.min(
@@ -392,20 +637,24 @@
             fontSize + 2
           );
 
-        if(articleText)
+        if(articleText){
+
           articleText.style.fontSize =
             fontSize + "px";
+
+        }
 
         scalePage();
 
       }
     );
 
+
   document
     .getElementById("fontMinus")
     ?.addEventListener(
       "click",
-      () => {
+      ()=>{
 
         fontSize =
           Math.max(
@@ -413,9 +662,12 @@
             fontSize - 2
           );
 
-        if(articleText)
+        if(articleText){
+
           articleText.style.fontSize =
             fontSize + "px";
+
+        }
 
         scalePage();
 
@@ -423,25 +675,28 @@
     );
 
 
-  /*
-  ============================================================
-  COMENTARIOS
-  ============================================================
-  */
+  /* ============================================================
+     COMENTARIOS
+     ============================================================ */
 
   window.enviado = function(){
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
       const msg =
         document.getElementById("mensaje");
 
       const form =
-        document.querySelector(".comment-form");
+        document.querySelector(
+          ".comment-form"
+        );
 
-      if(msg)
+      if(msg){
+
         msg.textContent =
           "Comentario enviado.";
+
+      }
 
       form?.reset();
 
@@ -450,11 +705,10 @@
   };
 
 
-  /*
-  ============================================================
-  ACCESO AUTORES / REVISIÓN
-  ============================================================
-  */
+  /* ============================================================
+     ACCESO DE DEMOSTRACIÓN
+     AUTORES / REVISIÓN
+     ============================================================ */
 
   document
     .querySelectorAll(".demo-login")
@@ -484,6 +738,7 @@
             form.dataset.password ||
             "DELIRIO";
 
+
           if(pass === expected){
 
             sessionStorage.setItem(
@@ -496,14 +751,16 @@
               window.location.href =
                 form.dataset.redirect;
 
-            }else if(msg){
+            }
+            else if(msg){
 
               msg.textContent =
                 "Acceso correcto.";
 
             }
 
-          }else if(msg){
+          }
+          else if(msg){
 
             msg.textContent =
               "Clave incorrecta.";
@@ -516,11 +773,9 @@
     });
 
 
-  /*
-  ============================================================
-  EDITOR DE REVISIÓN
-  ============================================================
-  */
+  /* ============================================================
+     REVISIÓN
+     ============================================================ */
 
   document
     .querySelectorAll(".review-open")
@@ -528,7 +783,7 @@
 
       btn.addEventListener(
         "click",
-        () => {
+        ()=>{
 
           document
             .getElementById("reviewEditor")
@@ -540,5 +795,6 @@
       );
 
     });
+
 
 })();
