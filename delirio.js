@@ -160,16 +160,16 @@
     cumpleanos: {
 
       dia:
-        "16",
+        "+100",
 
       mes:
-        "AGOSTO",
+        "DÍAS",
 
       nombre:
-        "DAVID PAREDES HERNÁNDEZ",
+        "DELIRIO",
 
       texto:
-        "CUMPLEAÑOS<br>CREADOR DE ESTA REVISTA"
+        "REVISTA<br>DIGITAL"
 
     },
 
