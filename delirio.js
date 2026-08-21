@@ -152,7 +152,7 @@
     /* ANUNCIO */
 
     anuncio:
-      "ANUNCIO",
+      "COLAB: +52 24 41 14 85 49",
 
 
     /* CUMPLEAÑOS */
